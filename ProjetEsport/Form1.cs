@@ -15,6 +15,21 @@ namespace ProjetEsport
 {
     public partial class Form1 : Form
     {
+        public static string createDate(DateTime dateTime)
+        {
+            try
+            {
+                if (dateTime == null)
+                {
+                    return "Non déterminée";
+                }
+                return dateTime.ToString();
+            }
+            catch (FormatException)
+            {
+                return "Parsing failed!";
+            }
+        }
         public Form1()
         {
             InitializeComponent();
@@ -60,17 +75,14 @@ namespace ProjetEsport
 
             listViewListeTournois.Items.Clear();
 
-            for(int i = 0; i < 10; i++)
+            foreach (UpcomingTournament tournament in myUpcomingTournanement)
             {
-                string[] ligneSerieTn = new string[] { "placeholder", myUpcomingTournanement[i].serie.full_name, myUpcomingTournanement[i].league.name /*, createDate(myUpcomingTournanement[i].begin_at), createDate(myUpcomingTournanement[i].end_at)*/ };
+                string[] ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name , createDate(tournament.begin_at), createDate(tournament.end_at) };
                 var lvi = new ListViewItem(ligneSerieTn);
-                lvi.Tag = ligneSerieTn[i];
+                lvi.Tag = ligneSerieTn;
                 listViewListeTournois.Items.Add(lvi);
             }
-
-
-
-            
+           
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
