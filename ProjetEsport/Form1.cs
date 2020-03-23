@@ -45,7 +45,7 @@ namespace ProjetEsport
 
             string RunningTournament_JSON = reader.ReadToEnd();
 
-            RunningTournament myRunningTournanement = Newtonsoft.Json.JsonConvert.DeserializeObject<RunningTournament>(RunningTournament_JSON);
+            RunningTournament[] myRunningTournanement = Newtonsoft.Json.JsonConvert.DeserializeObject<RunningTournament[]>(RunningTournament_JSON);
         }
 
         private void buttonTournoisUpcoming_Click(object sender, EventArgs e)
@@ -56,28 +56,21 @@ namespace ProjetEsport
 
             string UpcomingTournament_JSON = reader.ReadToEnd();
 
-            UpcomingTournament myUpcomingTournanement = Newtonsoft.Json.JsonConvert.DeserializeObject<UpcomingTournament>(UpcomingTournament_JSON);
+            UpcomingTournament[] myUpcomingTournanement = Newtonsoft.Json.JsonConvert.DeserializeObject<UpcomingTournament[]>(UpcomingTournament_JSON);
 
-            //var ligneSerieTn = new string[] { "placeholder", myUpcomingTournanement.serie.full_name, myUpcomingTournanement.league.name, RecupDate(myUpcomingTournanement.begin_at), RecupDate(myUpcomingTournanement.end_at) };
+            listViewListeTournois.Items.Clear();
 
-
-
-
-
-
-
-
-            string RecupDate(DateTime date_match)
+            for(int i = 0; i < 10; i++)
             {
-                string DateEnStr;
-                if (date_match == null)
-                {
-                    DateEnStr = "Non déterminée";
-                }
-                DateEnStr = date_match.ToString();
-
-                return DateEnStr;
+                string[] ligneSerieTn = new string[] { "placeholder", myUpcomingTournanement[i].serie.full_name, myUpcomingTournanement[i].league.name /*, createDate(myUpcomingTournanement[i].begin_at), createDate(myUpcomingTournanement[i].end_at)*/ };
+                var lvi = new ListViewItem(ligneSerieTn);
+                lvi.Tag = ligneSerieTn[i];
+                listViewListeTournois.Items.Add(lvi);
             }
+
+
+
+            
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
