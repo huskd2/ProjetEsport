@@ -15,21 +15,7 @@ namespace ProjetEsport
 {
     public partial class Form1 : Form
     {
-        public static string createDate(DateTime dateTime)
-        {
-            try
-            {
-                if (dateTime == null)
-                {
-                    return "Non déterminée";
-                }
-                return dateTime.ToString();
-            }
-            catch (FormatException)
-            {
-                return "Parsing failed!";
-            }
-        }
+       
         public Form1()
         {
             InitializeComponent();
@@ -54,13 +40,31 @@ namespace ProjetEsport
 
         private void buttonTournoisRunning_Click(object sender, EventArgs e)
         {
-            WebRequest request = HttpWebRequest.Create("https://api.pandascore.co/csgo/tournaments/running?sort=being_at&token=Z6NMfMOR_sgphX2aFt2PkJD1elVs6k7BGULPuj3WXpz2v__zd-4");
+            WebRequest request = HttpWebRequest.Create("https://api.pandascore.co/csgo/tournaments/running?token=Z6NMfMOR_sgphX2aFt2PkJD1elVs6k7BGULPuj3WXpz2v__zd-4");
             WebResponse response = request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
 
             string RunningTournament_JSON = reader.ReadToEnd();
 
             RunningTournament[] myRunningTournanement = Newtonsoft.Json.JsonConvert.DeserializeObject<RunningTournament[]>(RunningTournament_JSON);
+
+            listViewListeTournois.Items.Clear();
+
+            foreach (RunningTournament tournament in myRunningTournanement)
+            {
+                string[] ligneSerieTn;
+                if (tournament.end_at == null)
+                {
+                    ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name, tournament.begin_at.ToString(), "Inconnue ou durée d'un jour", tournament.prizepool };
+                }
+                else
+                {
+                    ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name, tournament.begin_at.ToString(), tournament.end_at.ToString(), tournament.prizepool };
+                }
+                var lvi = new ListViewItem(ligneSerieTn);
+                lvi.Tag = ligneSerieTn;
+                listViewListeTournois.Items.Add(lvi);
+            }
         }
 
         private void buttonTournoisUpcoming_Click(object sender, EventArgs e)
@@ -77,7 +81,15 @@ namespace ProjetEsport
 
             foreach (UpcomingTournament tournament in myUpcomingTournanement)
             {
-                string[] ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name , createDate(tournament.begin_at), createDate(tournament.end_at) };
+                string[] ligneSerieTn;
+                if (tournament.end_at == null)
+                {
+                    ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name, tournament.begin_at.ToString(), "Inconnue ou durée d'un jour", tournament.prizepool };
+                }
+                else
+                {
+                    ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name, tournament.begin_at.ToString(), tournament.end_at.ToString(), tournament.prizepool };
+                }
                 var lvi = new ListViewItem(ligneSerieTn);
                 lvi.Tag = ligneSerieTn;
                 listViewListeTournois.Items.Add(lvi);
@@ -170,7 +182,7 @@ public class Videogame
 public class RunningTournament
 {
     public DateTime begin_at { get; set; }
-    public DateTime end_at { get; set; }
+    public DateTime? end_at { get; set; }
     public int id { get; set; }
     public League league { get; set; }
     public int league_id { get; set; }
@@ -190,7 +202,7 @@ public class RunningTournament
 public class UpcomingTournament
 {
     public DateTime begin_at { get; set; }
-    public DateTime? end_at { get; set; }
+    public DateTime? end_at { get; set; }   
     public int id { get; set; }
     public League league { get; set; }
     public int league_id { get; set; }
