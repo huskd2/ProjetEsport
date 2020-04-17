@@ -299,12 +299,12 @@ namespace ProjetEsport
 
             string teams_JSON = reader.ReadToEnd();
 
-            teams myTeam = Newtonsoft.Json.JsonConvert.DeserializeObject<teams>(teams_JSON);
+            teams[] myTeam = Newtonsoft.Json.JsonConvert.DeserializeObject<teams[]>(teams_JSON);
 
-            myTeam.players.ToArray();
+            //myTeam[0].players.ToArray();
             for(int i = 0; i < 5; i++)
             {
-                TabJoueurs[i] = myTeam.players[i].name;
+                TabJoueurs[i] = myTeam[0].players[i].name;
             }
             return TabJoueurs;
         }
@@ -343,11 +343,11 @@ namespace ProjetEsport
                 string[] ligneSerieTn;
                 if (tournament.end_at == null)
                 {
-                    ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name, (tournament.begin_at.ToLocalTime()).ToString(), "Inconnue ou durée d'un jour", tournament.prizepool };
+                    ligneSerieTn = new string[] { tournament.name, tournament.serie.full_name, tournament.league.name, (tournament.begin_at.ToLocalTime()).ToString(), "Inconnue ou durée d'un jour", tournament.prizepool };
                 }
                 else
                 {
-                    ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name, (tournament.begin_at.ToLocalTime()).ToString(), tournament.end_at.ToString(), tournament.prizepool };
+                    ligneSerieTn = new string[] { tournament.name, tournament.serie.full_name, tournament.league.name, (tournament.begin_at.ToLocalTime()).ToString(), tournament.end_at.ToString(), tournament.prizepool };
                 }
                 var lvi = new ListViewItem(ligneSerieTn);
                 lvi.Tag = ligneSerieTn;
@@ -372,11 +372,11 @@ namespace ProjetEsport
                 string[] ligneSerieTn;
                 if (tournament.end_at == null)
                 {
-                    ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name, (tournament.begin_at.ToLocalTime()).ToString(), "Inconnue ou durée d'un jour", tournament.prizepool };
+                    ligneSerieTn = new string[] { tournament.name, tournament.serie.full_name, tournament.league.name, (tournament.begin_at.ToLocalTime()).ToString(), "Inconnue ou durée d'un jour", tournament.prizepool };
                 }
                 else
                 {
-                    ligneSerieTn = new string[] { "placeholder", tournament.serie.full_name, tournament.league.name, (tournament.begin_at.ToLocalTime()).ToString(), tournament.end_at.ToString(), tournament.prizepool };
+                    ligneSerieTn = new string[] { tournament.name, tournament.serie.full_name, tournament.league.name, (tournament.begin_at.ToLocalTime()).ToString(), tournament.end_at.ToString(), tournament.prizepool };
                 }
                 var lvi = new ListViewItem(ligneSerieTn);
                 lvi.Tag = ligneSerieTn;
@@ -499,6 +499,7 @@ namespace ProjetEsport
                 listViewMatch.Items.Add(lvi);
             }
         }
+
         private void OnButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
         {
             //MessageBox.Show(this, @"you clicked " + e.SubItem.Text);
@@ -536,6 +537,16 @@ namespace ProjetEsport
         }
 
         private void listViewMatch_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string equipe1 = listViewMatch.SelectedItems[0].SubItems[0].Text ;
+            string equipe2 = listViewMatch.SelectedItems[0].SubItems[1].Text;
+            string[] ListeJoueurEquipe1 = RecupJoueurs(equipe1);
+            string[] ListeJoueurEquipe2 = RecupJoueurs(equipe2);
+            Form2 FenetreLineup = new Form2();
+            FenetreLineup.labelE1.Text = equipe1;
+        }
+
+        private void listViewMatch_Click(object sender, EventArgs e)
         {
 
         }

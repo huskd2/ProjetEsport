@@ -38,7 +38,7 @@
             this.buttonTournoisUpcoming = new System.Windows.Forms.Button();
             this.panelAffichageTournois = new System.Windows.Forms.Panel();
             this.listViewListeTournois = new System.Windows.Forms.ListView();
-            this.thumbnailID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AvancementTournois = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnNameSeries = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnNameTn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnDateDebut = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -118,7 +118,7 @@
             this.panelMenuTournois.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMenuTournois.Location = new System.Drawing.Point(0, 0);
             this.panelMenuTournois.Name = "panelMenuTournois";
-            this.panelMenuTournois.Size = new System.Drawing.Size(940, 74);
+            this.panelMenuTournois.Size = new System.Drawing.Size(874, 74);
             this.panelMenuTournois.TabIndex = 4;
             this.panelMenuTournois.Visible = false;
             // 
@@ -127,7 +127,7 @@
             this.buttonTournoisRunning.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonTournoisRunning.Location = new System.Drawing.Point(0, 0);
             this.buttonTournoisRunning.Name = "buttonTournoisRunning";
-            this.buttonTournoisRunning.Size = new System.Drawing.Size(940, 34);
+            this.buttonTournoisRunning.Size = new System.Drawing.Size(874, 34);
             this.buttonTournoisRunning.TabIndex = 1;
             this.buttonTournoisRunning.Text = "Tournois en cours";
             this.buttonTournoisRunning.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@
             this.buttonTournoisUpcoming.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonTournoisUpcoming.Location = new System.Drawing.Point(0, 34);
             this.buttonTournoisUpcoming.Name = "buttonTournoisUpcoming";
-            this.buttonTournoisUpcoming.Size = new System.Drawing.Size(940, 40);
+            this.buttonTournoisUpcoming.Size = new System.Drawing.Size(874, 40);
             this.buttonTournoisUpcoming.TabIndex = 0;
             this.buttonTournoisUpcoming.Text = "Prochains tournois";
             this.buttonTournoisUpcoming.UseVisualStyleBackColor = true;
@@ -149,9 +149,9 @@
             this.panelAffichageTournois.Controls.Add(this.listViewListeTournois);
             this.panelAffichageTournois.Controls.Add(this.panelMenuTournois);
             this.panelAffichageTournois.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panelAffichageTournois.Location = new System.Drawing.Point(118, 1);
+            this.panelAffichageTournois.Location = new System.Drawing.Point(118, 0);
             this.panelAffichageTournois.Name = "panelAffichageTournois";
-            this.panelAffichageTournois.Size = new System.Drawing.Size(940, 509);
+            this.panelAffichageTournois.Size = new System.Drawing.Size(874, 485);
             this.panelAffichageTournois.TabIndex = 5;
             this.panelAffichageTournois.Visible = false;
             this.panelAffichageTournois.Paint += new System.Windows.Forms.PaintEventHandler(this.panelAffichageTournois_Paint);
@@ -159,35 +159,35 @@
             // listViewListeTournois
             // 
             this.listViewListeTournois.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.thumbnailID,
+            this.AvancementTournois,
             this.columnNameSeries,
             this.columnNameTn,
             this.columnDateDebut,
             this.columnDateFin,
             this.columnPrizepool});
             this.listViewListeTournois.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewListeTournois.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewListeTournois.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewListeTournois.FullRowSelect = true;
             this.listViewListeTournois.GridLines = true;
             this.listViewListeTournois.HideSelection = false;
             this.listViewListeTournois.Location = new System.Drawing.Point(0, 74);
             this.listViewListeTournois.Name = "listViewListeTournois";
-            this.listViewListeTournois.Size = new System.Drawing.Size(940, 435);
+            this.listViewListeTournois.Size = new System.Drawing.Size(874, 411);
             this.listViewListeTournois.TabIndex = 0;
             this.listViewListeTournois.UseCompatibleStateImageBehavior = false;
             this.listViewListeTournois.View = System.Windows.Forms.View.Details;
             this.listViewListeTournois.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // thumbnailID
+            // AvancementTournois
             // 
-            this.thumbnailID.Text = "Miniature";
-            this.thumbnailID.Width = 100;
+            this.AvancementTournois.Text = "Etat d\'avancement";
+            this.AvancementTournois.Width = 120;
             // 
             // columnNameSeries
             // 
             this.columnNameSeries.Text = "Series";
             this.columnNameSeries.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnNameSeries.Width = 100;
+            this.columnNameSeries.Width = 150;
             // 
             // columnNameTn
             // 
@@ -199,19 +199,19 @@
             // 
             this.columnDateDebut.Text = "Date de début";
             this.columnDateDebut.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnDateDebut.Width = 100;
+            this.columnDateDebut.Width = 140;
             // 
             // columnDateFin
             // 
             this.columnDateFin.Text = "Date de fin";
             this.columnDateFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnDateFin.Width = 100;
+            this.columnDateFin.Width = 140;
             // 
             // columnPrizepool
             // 
             this.columnPrizepool.Text = "Prizepool";
             this.columnPrizepool.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnPrizepool.Width = 100;
+            this.columnPrizepool.Width = 180;
             // 
             // listViewMatch
             // 
@@ -222,7 +222,7 @@
             this.columnLive,
             this.columnDateBegin,
             this.columnBo});
-            this.listViewMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewMatch.FullRowSelect = true;
             this.listViewMatch.GridLines = true;
             this.listViewMatch.HideSelection = false;
@@ -233,6 +233,7 @@
             this.listViewMatch.UseCompatibleStateImageBehavior = false;
             this.listViewMatch.View = System.Windows.Forms.View.Details;
             this.listViewMatch.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
+            this.listViewMatch.Click += new System.EventHandler(this.listViewMatch_Click);
             this.listViewMatch.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMatch_MouseDoubleClick);
             // 
             // columnEquipe1
@@ -293,7 +294,7 @@
         private System.Windows.Forms.Button buttonTournoisUpcoming;
         private System.Windows.Forms.Panel panelAffichageTournois;
         private System.Windows.Forms.ListView listViewListeTournois;
-        private System.Windows.Forms.ColumnHeader thumbnailID;
+        private System.Windows.Forms.ColumnHeader AvancementTournois;
         private System.Windows.Forms.ColumnHeader columnNameSeries;
         private System.Windows.Forms.ColumnHeader columnNameTn;
         private System.Windows.Forms.ColumnHeader columnDateDebut;
